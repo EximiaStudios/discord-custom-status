@@ -8,5 +8,7 @@ module.exports = {
     //     LISTENING
     //     WATCHING
     //     CUSTOM_STATUS
+    //
+    // Currently CUSTOM_STATUS does not work with a Bot
 
 };
