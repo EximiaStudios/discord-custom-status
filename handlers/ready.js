@@ -2,11 +2,6 @@ let { status, activityType } = require("../config");
 
 const Sequelize = require("sequelize");
 
-// const sequelize = new Sequelize({
-//     dialect: "sqlite",
-//     storage: "../../../../db/status.sqlite"
-// });
-
 const sequelize = new Sequelize("database", "user", "password", {
     host: "localhost",
     dialect: "sqlite",
@@ -29,11 +24,19 @@ module.exports = async client => {
 
     StatusDB.sync();
 
+    await new Promise(r => setTimeout(r, 1000));
+
     const statusFromDB = await StatusDB.findOne({ where: {name: "status"} });
 
     if (statusFromDB) {
         status = statusFromDB.get("text");
         activityType = statusFromDB.get("activity");
+    } else {
+        await StatusDB.create({
+            name: "status",
+            text: status,
+            activity: activityType
+        });
     }
     
     client.user.setActivity(status, { type: activityType })
