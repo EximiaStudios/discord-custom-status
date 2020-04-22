@@ -24,7 +24,7 @@ module.exports = async client => {
 
     StatusDB.sync();
 
-    await new Promise(r => setTimeout(r, 1000));
+    await new Promise(r => setTimeout(r, 1));
 
     const statusFromDB = await StatusDB.findOne({ where: {name: "status"} });
 
