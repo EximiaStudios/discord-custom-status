@@ -1,7 +1,7 @@
 let { status, activityType } = require("../config");
 
 var admin = require('firebase-admin');
-var serviceAccount = process.env.FIREBASE_CREDENTIALS || require("../serviceAccountKey.json");
+var serviceAccount = process.env.FIREBASE_CREDENTIALS || require("../../../core/serviceAccountKey.json");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
