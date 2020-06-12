@@ -14,6 +14,9 @@ module.exports = async client => {
         },
     });
 
+    var db = admin.database();
+    var ref = db.ref("status");
+
     ref.once("value", (data) => {
         var readStatus = data.val();
 
