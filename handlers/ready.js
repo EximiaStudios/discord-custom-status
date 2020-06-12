@@ -3,16 +3,16 @@ let { status, activityType } = require("../config");
 var admin = require('firebase-admin');
 var serviceAccount = process.env.FIREBASE_CREDENTIALS || require("../../../core/serviceAccountKey.json");
 
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: process.env.FIREBASE_URL || "https://eximiabot-dev.firebaseio.com",
-    databaseAuthVariableOverride: {
-        uid: "status-widget",
-    },
-});
-
 module.exports = async client => {
     console.log("status: ready");
+
+    admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount),
+        databaseURL: process.env.FIREBASE_URL || "https://eximiabot-dev.firebaseio.com",
+        databaseAuthVariableOverride: {
+            uid: "status-widget",
+        },
+    });
 
     ref.once("value", (data) => {
         var readStatus = data.val();
