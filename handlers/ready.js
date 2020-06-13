@@ -17,19 +17,19 @@ module.exports = async (client) => {
   await ref.once(
     "value",
     (data) => {
-        if (data.exists && data.hasChild("text") && data.hasChild("activity")) {
-            var readStatus = data.val();
+      if (data.exists && data.hasChild("text") && data.hasChild("activity")) {
+        var readStatus = data.val();
 
-            status = readStatus.text;
-            activityType = readStatus.activity;
-        } else {
-            console.log("Status database read failed. Empty database.");
-        }
+        status = readStatus.text;
+        activityType = readStatus.activity;
+      } else {
+        console.log("Status database read failed. Empty database.");
+      }
     },
     (errorObject) => {
       console.log("Status database read failed. " + errorObject.code);
     }
-  ); // async await
+  );
 
   admin.app().delete();
 
