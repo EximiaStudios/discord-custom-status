@@ -12,17 +12,16 @@ A Discord bot widget to set the status of the bot.
 
 ```js
 module.exports = {
-    status: "EximiaStudios debut game!",
-    activityType: "PLAYING"
+  status: "EximiaStudios debut game!",
+  activityType: "PLAYING",
 
-    // Available types are:
-    //     PLAYING
-    //     STREAMING
-    //     LISTENING
-    //     WATCHING
-    //     CUSTOM_STATUS
-    //
-    // Currently CUSTOM_STATUS does not work with a Bot
-
+  // Available types are:
+  //     PLAYING
+  //     STREAMING
+  //     LISTENING
+  //     WATCHING
+  //     CUSTOM_STATUS
+  //
+  // Currently CUSTOM_STATUS does not work with a Bot
 };
 ```
