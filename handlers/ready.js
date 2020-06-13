@@ -17,12 +17,14 @@ module.exports = async (client) => {
   await ref.once(
     "value",
     (data) => {
-      var readStatus = data.val();
+        if (data.exists && data.hasChild("text") && data.hasChild("activity")) {
+            var readStatus = data.val();
 
-      status = readStatus.text;
-      activityType = readStatus.activity;
-
-      console.log(status, activityType);
+            status = readStatus.text;
+            activityType = readStatus.activity;
+        } else {
+            console.log("Status database read failed. Empty database.");
+        }
     },
     (errorObject) => {
       console.log("Status database read failed. " + errorObject.code);
