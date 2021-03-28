@@ -1,16 +1,7 @@
 let { status, activityType } = require("../config");
-
 var admin = require("firebase-admin");
-var serviceAccount =
-  process.env.FIREBASE_CREDENTIALS ||
-  require("../../../core/serviceAccountKey.json");
-const setupDatabase = require("../../../core/firebaseDB");
 
 module.exports = async (client) => {
-  console.log("status: ready");
-
-  setupDatabase(admin, "status-widget");
-
   var db = admin.database();
   var ref = db.ref("status");
 
@@ -31,8 +22,6 @@ module.exports = async (client) => {
     }
   );
 
-  admin.app().delete();
-
   client.user
     .setActivity(status, { type: activityType })
     .then((presence) =>
@@ -41,4 +30,6 @@ module.exports = async (client) => {
       )
     )
     .catch(console.error);
+
+  console.log("status: ready");
 };
